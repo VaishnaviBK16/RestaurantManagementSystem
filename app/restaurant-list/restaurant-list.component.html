@@ -1,0 +1,111 @@
+<h2> Restaurant List</h2>
+<div class="list row">
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by Restaurant Name"
+          [(ngModel)]="firstName"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchByRestaurantName()"
+          >
+            Search
+          </button>
+        </div>
+
+      </div>
+    </div>
+    </div>
+    
+    <button class="btn btn-outline-secondary" type="button" (click)="getVegRestaurant()" style="margin-left:50px;color:#EEE2DC;
+    background:#3bac5f;font-size:15px;font-weight: 500;">Veg Restaurant</button>
+
+    <button class="btn btn-outline-secondary" type="button" (click)="getNonVegRestaurant()"
+          style="color:#dcedee;background: #ac3b3b;font-size:15px;font-weight: 500;">Non-Veg Restaurant </button>
+
+        <div
+          class="float-div4"
+          style="float: right; margin-left: 82%"
+        >
+          <li
+            type="none"
+            class="nav-item dropdown"
+            style="background-color: rgb(130, 167, 168)"
+          >
+            <h4
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="color: black"
+            >
+              <b style="color: black; font-weight: 400; font-size: large">Sort By</b>
+            </h4>
+            <ul class="dropdown-menu">
+              <li>
+                <a (click)="sortBy('costHigh')" class="dropdown-item"
+                  ><b>Cost High to Low</b></a
+                >
+              </li>
+              <li>
+                <a (click)="sortBy('costLow')" class="dropdown-item"
+                  ><b>Cost Low to High</b></a
+                >
+              </li>
+              <li>
+                <a (click)="sortBy('ratingLow')" class="dropdown-item"
+                  ><b>Rating Low to High</b></a
+                >
+              </li>
+              <li>
+                <a (click)="sortBy('ratingHigh')" class="dropdown-item"
+                  ><b>Rating High to Low</b></a
+                >
+              </li>
+            </ul>
+          </li>
+        </div>
+
+  <table class = "table table-striped" border="1" cellpadding="5" cellspacing="5">
+    <thead>
+        <tr style="background-color:#FFFFE0; text-align: center;">
+            <th > Restaurant Name</th>
+            <th> Owner Name </th>
+            <th> Cost </th>
+            <th> Ratings </th>
+            <th>Veg Restaurant</th>
+            <!--th>NonVeg Restaurant</th-->
+            <th> Actions </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let rest of restaurants | paginate: { itemsPerPage: count, currentPage: pageNo }" style="text-align: center; font-weight: 500;" >
+            <td> {{ rest.restaurantName }} </td>
+            <td> {{ rest.ownerName }} </td>
+            <td> {{ rest.avgCost }} </td>
+            <td> {{ rest.ratings}} </td>
+            <td> {{ rest.isVegRestaurant}} </td>
+            <!--td> {{ rest.isNonVegRestaurant}} </td-->
+          
+            <td>
+                <button (click) = "updateRestaurant(rest.restaurantId)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteRestaurant(rest.restaurantId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "restaurantDetails(rest.restaurantId)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+        <tr *ngIf="restaurants !== null">
+            <button class="m-3 btn btn-sm btn-danger" (click)="removeAllRestaurant()"  style="font-weight: 500;">
+                Remove All Restaurants
+              </button>
+        </tr>
+    </tbody>
+</table>
+
+<div> <pagination-controls (pageChange)="pageNo = $event"></pagination-controls> </div>
+

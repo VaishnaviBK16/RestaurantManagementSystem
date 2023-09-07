@@ -1,0 +1,56 @@
+
+<div class="col-md-6 offset-md-3" style="background-color: lightgray;">
+    <h3 style="text-align: center;"> Create Restaurant </h3>
+    <form (ngSubmit) = "onSubmit()">
+
+        
+        <div class="form-group">
+            <label> Restaurant Name</label>
+            <input type="text" class ="form-control" id = "restaurantName" placeholder="Restaurant Name"
+                [(ngModel)] = "restaurant.restaurantName" name = "restaurantName" required>
+        </div>
+    
+        <div class="form-group">
+            <label> Owner Name</label>
+            <input type="text" class ="form-control" id = "ownerName" placeholder="Owner Name"
+                [(ngModel)] = "restaurant.ownerName" name = "ownerName" required>
+        </div>
+
+        <div class="form-group">
+            <label> Avg Cost</label>
+            <input type="text" class ="form-control" id = "avgCost" placeholder="Avg Cost"
+                [(ngModel)] = "restaurant.avgCost" name = "avgCost" required>
+        </div>
+
+        <div class="form-group">
+            <label>Ratings</label>
+            <input type="text" class ="form-control" id = "ratings" placeholder="Ratings"
+                [(ngModel)] = "restaurant.ratings" name = "ratings" required>
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" class ="form-control" id = "location" placeholder="Location"
+                [(ngModel)] = "restaurant.location" name = "location" required>
+        </div>
+
+        <div class="form-check">
+            <label>Type Of Restaurant </label><br>
+            <input type="form-check-input" type="radio" name="isVegRestaurant"
+                [(ngModel)] = "restaurant.isVegRestaurant" value="true"/>
+
+            <label class="form-check-lable">Veg Restaurant</label><br>
+
+            <input type="form-check-input" type="radio" name="isVegRestaurant"
+                [(ngModel)] = "restaurant.isVegRestaurant" value="false"/>
+
+            <label class="form-check-lable">Non-Veg Restaurant</label><br>    
+            
+        </div>
+
+        <button class = "btn btn-success" type ="submit">Submit</button> <br>
+    
+    </form>
+</div> 
+ 
+
